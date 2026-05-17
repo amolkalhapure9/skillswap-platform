@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SkillSwap - Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="./css/dashboard.css">
+</head>
+
+<body onload="loadPage(event)" >
+
+<!-- TOPBAR -->
+<div class="navbar">
+    <div><a href="index.html">SkillSwap</a></div>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="logo">Menu</div>
+
+    <div class="menu-item active"><a href="dashboard.html">Dashboard</a></div>
+    <div class="menu-item" onclick="loadSkill(event)" id="skillsection">Explore Skills</div>
+    <div class="menu-item" onclick="loadUser(event)" id="friendsection">My Requests</div>
+    <div class="menu-item">Messages</div>
+    <div class="menu-item" id="profilesection" onclick="loadProfile(event, localStorage.getItem('USERID'))">Profile</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" style="display: block ">
+
+    <div class="header">
+        <h1 class="username"></h1>
+        <p>Find people to learn from or share your skills</p>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+        <button class="primary" onclick="loadSkill(event)">+ Add Skill</button>
+        <button class="secondary" onclick="loadSkill(event)">Browse Skills</button>
+        <button class="secondary" onclick="loadUser(event)" >View Requests</button>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats" style="cursor: pointer;">
+        <div class="stat" onclick="loadSkill(event)">
+            <h2 class="knowSkills">3</h2>
+            <p>Skills Offered</p>
+        </div>
+        <div class="stat" onclick="loadUser(event)" style="cursor: pointer;" >
+            <h2 class="requestReceived">2</h2>
+            <p>Requests Received</p>
+        </div>
+        <div class="stat">
+            <h2>5</h2>
+            <p>Messages</p>
+        </div>
+    </div>
+
+    <!-- RECENT REQUESTS -->
+    <div class="section">
+        <h3>Recent Requests</h3>
+        <div class="item">Rahul requested Java help</div>
+        <div class="item">Priya wants UI Design guidance</div>
+        <div class="item">Amit accepted your request</div>
+    </div>
+
+    <!-- SUGGESTED USERS -->
+    <div class="section">
+        <h3>Suggested Users</h3>
+        <div class="item">John - Java Expert</div>
+        <div class="item">Sarah - UI Designer</div>
+    </div>
+
+</div>
+
+<div class="profile" style="display: none">
+    <div class="Profile-avatar">
+      <P>Profile background image</P>
+      
+    </div>
+    <div class="profile-img">
+        <div class="pimage">
+            <img id="imageprofile" src="C:\Users\amolk\Downloads\default.jpg" alt="Profile image"/>
+            <p class="imageUpdate" onclick="openImagePicker(event)" style="display:none">Change Image ✏️</p>
+             <input type="file"
+           id="profileInput"
+           hidden>
+
+        </div>
+        <div class="bio">
+            <h2 id="pfirstname"></h2>
+           <input id="bio" maxlength="40" disabled></input>
+        </div>
+        <div class="button">
+            <button id="updatebutton" onclick="updateProfile(event)" style="display: none;">Update Profile</button>
+        </div>
+        
+        
+    </div>
+    <div class="profile-info">
+      <form id="userInfo">
+          <h4>FirstName: <input id="firstname" type="text" disabled></h4> 
+          <h4>LastName: <input id="lastname" type="text" disabled></h4> 
+          <h4>Email: <input id="email" type="text" disabled></h4>
+          <h4>User Id: <input id="userid" type="text" disabled></h4>
+          <h4>About:</h4>
+<textarea id="about" disabled></textarea>
+
+          <h4>Mobile No: <input id="mobileno" type="text" disabled></h4>   
+           <div class="button">
+            <button  id="submitbutton" onclick="submitProfile(event)" style="display:none">Submit Profile</button>
+        </div>
+      </form>
+    </div>
+
+    
+
+</div>
+
+
+
+<div class="skills" style="display:none">
+    
+    <div class="main-div">
+        <p>Add skill you know <button style=" background-color: #e5e7eb; margin-left:10px" onclick="showKnowSkill(event)">Add skill</button></p>
+    <div class="addSkill-KNOW">
+        
+        
+    </div>
+        <h2>Skills Known</h2>
+        <div class="KNOW" ">
+            
+
+
+        </div>
+            <p>Add skill you Want to learn <button style=" background-color: #e5e7eb; margin-left:10px" onclick="showLearnSkill(event)">Add skill</button></p>
+        <div class="addSkill-LEARN">
+        
+        
+    </div>
+            <h2>Skills Want to Learn</h2>
+        <div class="LEARN"></div>
+    </div>
+</div>
+
+<div class="friendrequest" style="display:none">
+    <div class="usercategory">
+        <p class="requestcategory" onclick="loadUser(event)">Recommended</p>
+    <p class="pendingRequest" onclick="loadRequestedUser(event)">Requested</p>
+    <p class="connectedfriends" onclick="loadfrienduser(event)">FriendList</p>
+    </div>
+
+   <div class="userSearchForm">
+     <form>
+        <input type="text" id="userName" type="userName" placeholder="Search User" required/>
+        <button class="searchUser" onclick="searchUser(event)">Search</button>
+    </form>
+
+   </div>
+  
+    
+    <div class="friendlist"></div>
+
+    <div class="pagination">
+    <button class="prev" id="prevBtn" onclick="prevButton(event)">Prev</button>
+    <button class="next" id="nextBtn" onclick="nextButton(event)">Next</button>
+</div>
+</div>
+
+</div>
+
+</body>
+<script src="./js/dashboard.js">
+</script>
+</html>
